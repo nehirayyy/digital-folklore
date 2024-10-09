@@ -24,14 +24,14 @@ y.domain([0, d3.max(ORG_VIEW_DATA, (d) => d.views)]); //calculating the vertical
 
 const chart_container = d3.select('svg')
     .attr('width', CHART_WIDTH)
-    .attr('height', CHART_HEIGHT);
+    .attr('height', CHART_HEIGHT + MARGINS.top + MARGINS.bottom);
 
 const chart = chart_container.append('g') //g for grouping other svg's together
 
 chart
 .append('g')
 .call(d3.axisBottom(x))
-.attr('transform', `translate(0, ${CHART_HEIGHT - 20})`)
+.attr('transform', `translate(0, ${CHART_HEIGHT})`)
 .attr('color', '#0000ff');
 
 // chart
@@ -55,7 +55,7 @@ chart.selectAll('.label')
 .append('text')
 .text(data => data.org_year)
 .attr('x', data => x(data.id))
-.attr('y', data => y(data.views) - 4)
+.attr('y', data => y(data.views) - 4) //line space
 // .attr('text-anchor', 'middle')
 // .classed('label', true);
 
